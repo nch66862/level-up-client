@@ -108,7 +108,6 @@ export const GameForm = () => {
                     >
                         <option value={1}>1</option>
                         <option value={2}>2</option>
-                        <option value={2}>2</option>
                         <option value={3}>3</option>
                         <option value={4}>4</option>
                         <option value={5}>5</option>
@@ -122,11 +121,11 @@ export const GameForm = () => {
                         value={currentGame.gameTypeId}
                         onChange={changeGameTypeState}
                     >
-                    </select>
                     <option value={0}>Select an option...</option>
                     {gameTypes.map(gameType => {
                         return <option key={gameType.id} value={gameType.id}>{gameType.type}</option>
                     })}
+                    </select>
                 </div>
             </fieldset>
 

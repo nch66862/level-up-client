@@ -29,7 +29,7 @@ export const GameProvider = (props) => {
     }
 
     const getGameTypes = () => {
-        return fetch("http://localhost:8000/games", {
+        return fetch("http://localhost:8000/gametypes", {
             headers:{
                 "Authorization": `Token ${localStorage.getItem("lu_token")}`
             }
@@ -39,7 +39,7 @@ export const GameProvider = (props) => {
     }
 
     return (
-        <GameContext.Provider value={{ games, getGames, createGame, getGameTypes }} >
+        <GameContext.Provider value={{ games, getGames, createGame, getGameTypes, gameTypes }} >
             { props.children }
         </GameContext.Provider>
     )
