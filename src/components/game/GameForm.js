@@ -58,13 +58,13 @@ export const GameForm = () => {
 
     const changeGameSkillLevelState = (event) => {
         const newGameState = { ...currentGame }
-        newGameState.skillLevel = event.target.value
+        newGameState.skillLevel = parseInt(event.target.value)
         setCurrentGame(newGameState)
     }
 
     const changeGameTypeState = (event) => {
         const newGameState = { ...currentGame }
-        newGameState.gameTypeId = event.target.value
+        newGameState.gameTypeId = parseInt(event.target.value)
         setCurrentGame(newGameState)
     }
     /* REFACTOR CHALLENGE END */
@@ -79,6 +79,54 @@ export const GameForm = () => {
                         value={currentGame.title}
                         onChange={changeGameTitleState}
                     />
+                </div>
+            </fieldset>
+            <fieldset>
+                <div className="form-group">
+                    <label htmlFor="title">Manufacturer: </label>
+                    <input type="text" name="title" required className="form-control"
+                        value={currentGame.maker}
+                        onChange={changeGameMakerState}
+                    />
+                </div>
+            </fieldset>
+            <fieldset>
+                <div className="form-group">
+                    <label htmlFor="title">Number of Players: </label>
+                    <input type="text" name="title" required className="form-control"
+                        value={currentGame.numberOfPlayers}
+                        onChange={changeGamePlayersState}
+                    />
+                </div>
+            </fieldset>
+            <fieldset>
+                <div className="form-group">
+                    <label htmlFor="title">Skill Level: </label>
+                    <select type="text" name="title" required className="form-control"
+                        value={currentGame.skillLevel}
+                        onChange={changeGameSkillLevelState}
+                    >
+                        <option value={1}>1</option>
+                        <option value={2}>2</option>
+                        <option value={2}>2</option>
+                        <option value={3}>3</option>
+                        <option value={4}>4</option>
+                        <option value={5}>5</option>
+                    </select>
+                </div>
+            </fieldset>
+            <fieldset>
+                <div className="form-group">
+                    <label htmlFor="title">Game Type: </label>
+                    <select type="text" name="title" required className="form-control"
+                        value={currentGame.gameTypeId}
+                        onChange={changeGameTypeState}
+                    >
+                    </select>
+                    <option value={0}>Select an option...</option>
+                    {gameTypes.map(gameType => {
+                        return <option key={gameType.id} value={gameType.id}>{gameType.type}</option>
+                    })}
                 </div>
             </fieldset>
 
