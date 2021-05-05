@@ -23,7 +23,7 @@ export const GameProvider = (props) => {
             }
         })
             .then()
-            .then()
+            .then(getGames)
     }
 
     const getGameTypes = () => {
@@ -32,8 +32,8 @@ export const GameProvider = (props) => {
                 "Authorization": `Token ${localStorage.getItem("lu_token")}`
             }
         })
-            .then()
-            .then()
+            .then(response => response.json())
+            .then(setTypes)
     }
 
     return (
