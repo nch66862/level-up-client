@@ -1,9 +1,10 @@
 import React, { useContext, useEffect } from "react"
+import { useHistory } from "react-router"
 import { EventContext } from "./EventProvider.js"
 
 export const EventList = (props) => {
     const { events, getEvents } = useContext(EventContext)
-
+    const history = useHistory()
     useEffect(() => {
         getEvents()
     }, [])
