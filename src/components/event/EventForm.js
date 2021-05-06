@@ -38,46 +38,26 @@ export const EventForm = () => {
             <fieldset>
                 <div className="form-group">
                     <label htmlFor="gameId">Event Title: </label>
-                    <select name="name" className="form-control"
+                    <input name="name" className="form-control" type="text"
                         value={ currentEvent.name }
-                        onChange={ changeEventState }>
-                        <option value="0">Select a game...</option>
-                        {
-                            games.map(game => (
-                                <option></option>
-                            ))
-                        }
-                    </select>
+                        onChange={ changeEventState }
+                    />
                 </div>
             </fieldset>
             <fieldset>
                 <div className="form-group">
                     <label htmlFor="gameId">Time: </label>
-                    <select name="eventTime" className="form-control"
+                    <input name="eventTime" className="form-control" type="datetime-local"
                         value={ currentEvent.eventTime }
-                        onChange={ changeEventState }>
-                        <option value="0">Select a game...</option>
-                        {
-                            games.map(game => (
-                                <option></option>
-                            ))
-                        }
-                    </select>
+                        onChange={ changeEventState }/>
                 </div>
             </fieldset>
             <fieldset>
                 <div className="form-group">
                     <label htmlFor="gameId">Location: </label>
-                    <select name="location" className="form-control"
+                    <input name="location" className="form-control" type="text"
                         value={ currentEvent.location }
-                        onChange={ changeEventState }>
-                        <option value="0">Select a game...</option>
-                        {
-                            games.map(game => (
-                                <option></option>
-                            ))
-                        }
-                    </select>
+                        onChange={ changeEventState }/>
                 </div>
             </fieldset>
             <fieldset>
@@ -95,9 +75,6 @@ export const EventForm = () => {
                     </select>
                 </div>
             </fieldset>
-
-            {/* Create the rest of the input fields */}
-
             <button type="submit"
                 onClick={evt => {
                     evt.preventDefault()
