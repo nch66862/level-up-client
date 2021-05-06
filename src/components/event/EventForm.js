@@ -69,7 +69,7 @@ export const EventForm = () => {
                         <option value="0">Select a game...</option>
                         {
                             games.map(game => (
-                                <option></option>
+                                <option key={game.id} value={game.id}>{game.title}</option>
                             ))
                         }
                     </select>

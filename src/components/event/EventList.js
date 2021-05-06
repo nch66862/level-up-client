@@ -32,10 +32,14 @@ export const EventList = (props) => {
                                     weekday: 'long',
                                     year: 'numeric',
                                     month: 'long',
-                                    day: 'numeric'
+                                    day: 'numeric',
+                                    timeZone: "UTC"
                                 })
                             }
-                            @ {event.time}
+                            @ 
+                            {
+                                new Date(event.event_time).toLocaleTimeString("en-US", {timeZone: "UTC"})
+                            }
                         </div>
                     </section>
                 })
