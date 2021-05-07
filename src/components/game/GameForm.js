@@ -5,7 +5,7 @@ import { useHistory, useParams } from 'react-router-dom'
 
 export const GameForm = () => {
     const history = useHistory()
-    const { createGame, getGameTypes, gameTypes, getGameById } = useContext(GameContext)
+    const { createGame, getGameTypes, gameTypes, getGameById, modifyGame } = useContext(GameContext)
     const { gameId } = useParams()
 
     /*
@@ -29,7 +29,7 @@ export const GameForm = () => {
         getGameTypes()
         if (gameId) {
             getGameById(gameId)
-            .then(setCurrentGame)
+                .then(setCurrentGame)
         }
     }, [])
 
@@ -115,21 +115,18 @@ export const GameForm = () => {
                         value={currentGame.gameTypeId}
                         onChange={changeGameTypeState}
                     >
-                    <option value={0}>Select an option...</option>
-                    {gameTypes.map(gameType => {
-                        return <option key={gameType.id} value={gameType.id}>{gameType.type}</option>
-                    })}
+                        <option value={0}>Select an option...</option>
+                        {gameTypes.map(gameType => {
+                            return <option key={gameType.id} value={gameType.id}>{gameType.type}</option>
+                        })}
                     </select>
                 </div>
             </fieldset>
 
-            {/* You create the rest of the input fields for each game property */}
-
-            <button type="submit"
+            {gameId ? <button type="submit"
                 onClick={evt => {
                     // Prevent form from being submitted
                     evt.preventDefault()
-
                     const game = {
                         maker: currentGame.maker,
                         title: currentGame.title,
@@ -137,12 +134,28 @@ export const GameForm = () => {
                         skillLevel: parseInt(currentGame.skillLevel),
                         gameTypeId: parseInt(currentGame.gameTypeId)
                     }
-
                     // Send POST request to your API
-                    createGame(game)
+                    modifyGame(game)
                         .then(() => history.push("/games"))
                 }}
-                className="btn btn-primary">Create</button>
+                className="btn btn-primary">Submit Edit</button>
+                :
+                <button type="submit"
+                    onClick={evt => {
+                        // Prevent form from being submitted
+                        evt.preventDefault()
+                        const game = {
+                            maker: currentGame.maker,
+                            title: currentGame.title,
+                            numberOfPlayers: parseInt(currentGame.numberOfPlayers),
+                            skillLevel: parseInt(currentGame.skillLevel),
+                            gameTypeId: parseInt(currentGame.gameTypeId)
+                        }
+                        // Send POST request to your API
+                        createGame(game)
+                            .then(() => history.push("/games"))
+                    }}
+                    className="btn btn-primary">Create</button>}
         </form>
     )
 }
