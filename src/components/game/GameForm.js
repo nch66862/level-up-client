@@ -1,11 +1,12 @@
 import React, { useContext, useState, useEffect } from "react"
 import { GameContext } from "./GameProvider.js"
-import { useHistory } from 'react-router-dom'
+import { useHistory, useParams } from 'react-router-dom'
 
 
 export const GameForm = () => {
     const history = useHistory()
-    const { createGame, getGameTypes, gameTypes } = useContext(GameContext)
+    const { createGame, getGameTypes, gameTypes, getGameById } = useContext(GameContext)
+    const { gameId } = useParams()
 
     /*
         Since the input fields are bound to the values of
@@ -26,18 +27,12 @@ export const GameForm = () => {
     */
     useEffect(() => {
         getGameTypes()
+        if (gameId) {
+            getGameById(gameId)
+            .then(setCurrentGame)
+        }
     }, [])
 
-    /*
-        REFACTOR CHALLENGE START
-
-        Can you refactor this code so that all property
-        state changes can be handled with a single function
-        instead of five functions that all, largely, do
-        the same thing?
-
-        One hint: [event.target.name]
-    */
     const changeGameTitleState = (event) => {
         const newGameState = { ...currentGame }
         newGameState.title = event.target.value
@@ -67,7 +62,6 @@ export const GameForm = () => {
         newGameState.gameTypeId = parseInt(event.target.value)
         setCurrentGame(newGameState)
     }
-    /* REFACTOR CHALLENGE END */
 
     return (
         <form className="gameForm">
