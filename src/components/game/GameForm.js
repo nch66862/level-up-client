@@ -29,7 +29,15 @@ export const GameForm = () => {
         getGameTypes()
         if (gameId) {
             getGameById(gameId)
-                .then(setCurrentGame)
+                .then(game => {
+                    game.gameTypeId = game.gametype.id
+                    game.skillLevel = game.skill_level
+                    game.numberOfPlayers = game.number_of_players
+                    delete game.gametype
+                    delete game.skill_level
+                    delete game.number_of_players
+                    setCurrentGame(game)
+                })
         }
     }, [])
 
@@ -128,6 +136,7 @@ export const GameForm = () => {
                     // Prevent form from being submitted
                     evt.preventDefault()
                     const game = {
+                        id: currentGame.id,
                         maker: currentGame.maker,
                         title: currentGame.title,
                         numberOfPlayers: parseInt(currentGame.numberOfPlayers),
