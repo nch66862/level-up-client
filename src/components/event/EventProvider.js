@@ -34,7 +34,7 @@ export const EventProvider = (props) => {
                 "Authorization": `Token ${localStorage.getItem("lu_token")}`
             }
         })
-            .then(response => response.json())
+            .then(getEvents)
     }
 
     const leaveEvent = eventId => {
@@ -44,12 +44,11 @@ export const EventProvider = (props) => {
                 "Authorization": `Token ${localStorage.getItem("lu_token")}`
             }
         })
-            .then(response => response.json())
             .then(getEvents)
     }
 
     return (
-        <EventContext.Provider value={{ events, getEvents, createEvent, joinEvent }} >
+        <EventContext.Provider value={{ events, getEvents, createEvent, joinEvent, leaveEvent }} >
             { props.children }
         </EventContext.Provider>
     )
