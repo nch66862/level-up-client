@@ -38,6 +38,7 @@ export const EventList = (props) => {
                             } @ {
                                 new Date(event.event_time).toLocaleTimeString("en-US", {timeZone: "UTC"})
                         }</div>
+                        <div>Number of Attendees: {event.number_of_attendees}</div>
                         {
                             event.joined
                                 ? <button className="btn btn-3"
