@@ -29,6 +29,7 @@ export const GameList = (props) => {
                         <div className="game__players">{game.number_of_players} players needed</div>
                         <div className="game__skillLevel">Skill level is {game.skill_level}</div>
                         <div className="game__associatedEvents">Associated Events: {game.event_count}</div>
+                        {game.user_event_count > 0 && <div className="game__userGameEvents">Your game is scheduled for {game.user_event_count} event{game.user_event_count > 1 && "s"}!</div>}
                     </section>
                 })
             }
