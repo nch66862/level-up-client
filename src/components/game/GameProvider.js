@@ -7,7 +7,7 @@ export const GameProvider = (props) => {
     const [ gameTypes, setTypes ] = useState([])
 
     const getGames = () => {
-        return fetch("http://localhost:8000/games", {
+        return fetch("https://nac-level-up-api.herokuapp.com/games", {
             headers:{
                 "Authorization": `Token ${localStorage.getItem("lu_token")}`
             }
@@ -17,7 +17,7 @@ export const GameProvider = (props) => {
     }
 
     const getGameById = (gameId) => {
-        return fetch(`http://localhost:8000/games/${gameId}`, {
+        return fetch(`https://nac-level-up-api.herokuapp.com/games/${gameId}`, {
             headers:{
                 "Authorization": `Token ${localStorage.getItem("lu_token")}`
             }
@@ -26,7 +26,7 @@ export const GameProvider = (props) => {
     }
 
     const createGame = (game) => {
-        return fetch("http://localhost:8000/games", {
+        return fetch("https://nac-level-up-api.herokuapp.com/games", {
             method: "POST",
             headers:{
                 "Authorization": `Token ${localStorage.getItem("lu_token")}`,
@@ -38,7 +38,7 @@ export const GameProvider = (props) => {
     }
 
     const modifyGame = (game) => {
-        return fetch(`http://localhost:8000/games/${game.id}`, {
+        return fetch(`https://nac-level-up-api.herokuapp.com/games/${game.id}`, {
             method: "PUT",
             headers:{
                 "Authorization": `Token ${localStorage.getItem("lu_token")}`,
@@ -50,7 +50,7 @@ export const GameProvider = (props) => {
     }
 
     const getGameTypes = () => {
-        return fetch("http://localhost:8000/gametypes", {
+        return fetch("https://nac-level-up-api.herokuapp.com/gametypes", {
             headers:{
                 "Authorization": `Token ${localStorage.getItem("lu_token")}`
             }
