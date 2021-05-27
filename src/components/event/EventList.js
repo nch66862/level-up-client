@@ -36,7 +36,7 @@ export const EventList = (props) => {
                                     timeZone: "UTC"
                                 })
                             } @ {
-                                new Date(event.event_time).toLocaleTimeString("en-US", {timeZone: "UTC"})
+                                new Date(event.event_time).toLocaleTimeString("en-US", {timeZone: "UTC", hour12: true, hour: 'numeric', minute: '2-digit'})
                         }</div>
                         <div>Number of Attendees: {event.number_of_attendees}</div>
                         {
