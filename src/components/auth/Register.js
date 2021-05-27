@@ -3,6 +3,7 @@ import { Link } from "react-router-dom"
 import "./Auth.css"
 
 export const Register = (props) => {
+    const username = React.createRef()
     const firstName = React.createRef()
     const lastName = React.createRef()
     const email = React.createRef()
@@ -16,7 +17,7 @@ export const Register = (props) => {
 
         if (password.current.value === verifyPassword.current.value) {
             const newUser = {
-                "username": email.current.value,
+                "username": username.current.value,
                 "first_name": firstName.current.value,
                 "last_name": lastName.current.value,
                 "bio": bio.current.value,
@@ -55,8 +56,12 @@ export const Register = (props) => {
             <form className="form--login" onSubmit={handleRegister}>
                 <h1 className="h3 mb-3 font-weight-normal">Register an account</h1>
                 <fieldset>
+                    <label htmlFor="username"> Username </label>
+                    <input ref={username} type="text" name="username" className="form-control" placeholder="Username" required autoFocus />
+                </fieldset>
+                <fieldset>
                     <label htmlFor="firstName"> First Name </label>
-                    <input ref={firstName} type="text" name="firstName" className="form-control" placeholder="First name" required autoFocus />
+                    <input ref={firstName} type="text" name="firstName" className="form-control" placeholder="First name" required />
                 </fieldset>
                 <fieldset>
                     <label htmlFor="lastName"> Last Name </label>
@@ -75,7 +80,7 @@ export const Register = (props) => {
                     <input ref={verifyPassword} type="password" name="verifyPassword" className="form-control" placeholder="Verify password" required />
                 </fieldset>
                 <fieldset>
-                    <label htmlFor="verifyPassword"> Verify Password </label>
+                    <label htmlFor="bio"> Bio </label>
                     <textarea ref={bio} name="bio" className="form-control" placeholder="Let other gamers know a little bit about you..." />
                 </fieldset>
                 <fieldset style={{
